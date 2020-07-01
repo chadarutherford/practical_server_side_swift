@@ -1,0 +1,42 @@
+//
+//  BlogCategoryModel.swift
+//  
+//
+//  Created by Chad Rutherford on 7/1/20.
+//
+
+import Fluent
+import Vapor
+
+final class BlogCategoryModel: Model {
+	static let schema = "blog_categories"
+	
+	struct FieldKeys {
+		static var title: FieldKey { "title" }
+	}
+	
+	@ID() var id: UUID?
+	@Field(key: FieldKeys.title) var title: String
+	@Children(for: \.$category) var posts: [BlogPostModel]
+	
+	init() { }
+	
+	init(id: UUID? = nil, title: String) {
+		self.id = id
+		self.title = title
+	}
+}
+
+extension BlogCategoryModel {
+	struct ViewContext: Encodable {
+		var id: String
+		var title: String
+		
+		init(model: BlogCategoryModel) {
+			self.id = model.id!.uuidString
+			self.title = model.title
+		}
+	}
+	
+	var viewContext: ViewContext { .init(model: self) }
+}
