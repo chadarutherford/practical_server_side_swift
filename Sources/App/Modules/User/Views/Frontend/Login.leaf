@@ -1,4 +1,4 @@
-#extend("index"):
+#extend("Frontend/Index"):
     #export("body"):
         <section class="wrapper">
             <form action="/sign-in" method="post">
@@ -7,7 +7,7 @@
                 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" value="" class="field">
- 
+
                 <input type="submit" class="submit" value="Submit">
             </form>
         </section>
