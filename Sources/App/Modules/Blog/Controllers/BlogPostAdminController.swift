@@ -81,4 +81,12 @@ struct BlogPostAdminController {
 				self.render(req: req, form: form)
 		}
 	}
+	
+	func delete(req: Request) throws -> EventLoopFuture<String> {
+		try self.find(req).flatMap { item in
+			item.delete(on: req.db).map {
+				item.id!.uuidString
+			}
+		}
+	}
 }
