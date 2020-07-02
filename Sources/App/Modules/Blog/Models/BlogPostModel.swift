@@ -78,3 +78,8 @@ extension BlogPostModel {
 	
 	var viewContext: ViewContext { .init(model: self) }
 }
+
+
+extension BlogPostModel: ViewContextRepresentable {
+	var viewIdentifier: String { self.id!.uuidString }
+}
