@@ -93,3 +93,17 @@ extension BlogCategoryModel: CreateContentRepresentable {
 		self.title = content.title
 	}
 }
+
+extension BlogCategoryModel: UpdateContentRepresentable {
+	struct UpdateContent: ValidatableContent {
+		var title: String
+		
+		static func validations(_ validations: inout Validations) {
+			validations.add("title", as: String.self, is: !.empty)
+		}
+	}
+	
+	func update(_ content: UpdateContent) throws {
+		self.title = content.title
+	}
+}
