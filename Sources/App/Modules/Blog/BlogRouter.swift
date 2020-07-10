@@ -30,6 +30,8 @@ struct BlogRouter: RouteCollection {
 		
 		let blogApi = routes.grouped("api", "blog")
 		let categories = blogApi.grouped("categories")
-		BlogCategoryApiController().setupListRoute(routes: categories)
+		let categoryApiController = BlogCategoryApiController()
+		categoryApiController.setupListRoute(routes: categories)
+		categoryApiController.setupGetRoute(routes: categories)
     }
 }
