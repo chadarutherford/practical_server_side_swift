@@ -8,6 +8,6 @@
 import Fluent
 import Vapor
 
-struct BlogCategoryApiController: ListContentController, GetContentController {
+struct BlogCategoryApiController: ListContentController, GetContentController, CreateContentController {
 	typealias Model = BlogCategoryModel
 }
