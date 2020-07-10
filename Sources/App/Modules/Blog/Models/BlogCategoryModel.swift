@@ -50,3 +50,18 @@ extension BlogCategoryModel: FormFieldOptionRepresentable {
 extension BlogCategoryModel: ViewContextRepresentable {
 	var viewIdentifier: String { self.id!.uuidString}
 }
+
+extension BlogCategoryModel: ListContentRepresentable {
+	
+    struct ListItem: Content {
+        var id: String
+        var title: String
+		
+        init(model: BlogCategoryModel) {
+            self.id = model.id!.uuidString
+            self.title = model.title
+        }
+    }
+	
+    var listContent: ListItem { .init(model: self) }
+}
